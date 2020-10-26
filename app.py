@@ -31,9 +31,9 @@ def home():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"Searching example for the route below: /api/v1.0/20100823 <= This is Example!!!<br/>"
+        f"Searching example for the route below: /api/v1.0/20100823 <= This is an Example!!!<br/>"
         f"/api/v1.0/<start><br/>"
-        f"Searching example for the route below: /api/v1.0/20100823/20110504 <= This is Example!!!<br/>"
+        f"Searching example for the route below: /api/v1.0/20100823/20110504 <= This is an Example!!!<br/>"
         f"/api/v1.0/<start>/<end><br/>"
     )
 @app.route("/api/v1.0/precipitation")
@@ -101,9 +101,8 @@ def tobs():
 
     return jsonify(all_tobs)
 
-@app.route("/api/v1.0/<start>/<end>")
 @app.route("/api/v1.0/<start>")
-def search(start):
+def search(start=None, end = None):
     # Create our session (link) from Python to the DB
     session = Session(engine)
     # Query all variables
@@ -112,14 +111,13 @@ def search(start):
            func.max(Measurement.tobs)]
 
     results = session.query(*sel).filter(Measurement.date >= start).all()
-    # results = session.query(*sel).all() # 73.09795396(avg),87(max),53(min)
-    session.close()
-    if start == start:
-        return jsonify(results)
-    return jsonify({"error": f"Data with date {results} not found."}), 404
 
-# @app.route("/api/v1.0/<start>/<end>")
-def search_2(start, end):
+    session.close()
+
+    return jsonify(results)
+    
+@app.route("/api/v1.0/<start>/<end>")
+def search_2(start=None, end = None):
     # Create our session (link) from Python to the DB
     session = Session(engine)
     # Query all variables
@@ -130,10 +128,8 @@ def search_2(start, end):
     results_2 = session.query(*sel).filter(Measurement.date >= start, Measurement.date <= end).all()
     
     session.close()
-    if start == start:
-        if end == end:
-           return jsonify(results_2)
-    return jsonify({"error": f"Data with date {results_2} not found."}), 404
+    
+    return jsonify(results_2)
 
 if __name__ == "__main__":
     app.run(debug=True)
