@@ -31,9 +31,9 @@ def home():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"Searching example for the route below: /api/v1.0/20100823 <= This is an Example!!!<br/>"
+        f"Searching example for the route below: /api/v1.0/2010-08-23 <= This is an Example!!!<br/>"
         f"/api/v1.0/<start><br/>"
-        f"Searching example for the route below: /api/v1.0/20100823/20110504 <= This is an Example!!!<br/>"
+        f"Searching example for the route below: /api/v1.0/2011-05-01/2011-05-04 <= This is an Example!!!<br/>"
         f"/api/v1.0/<start>/<end><br/>"
     )
 @app.route("/api/v1.0/precipitation")
@@ -102,34 +102,22 @@ def tobs():
     return jsonify(all_tobs)
 
 @app.route("/api/v1.0/<start>")
-def search(start=None, end = None):
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
-    # Query all variables
-    sel = [func.min(Measurement.tobs),
-           func.avg(Measurement.tobs),
-           func.max(Measurement.tobs)]
-
-    results = session.query(*sel).filter(Measurement.date >= start).all()
-
-    session.close()
-
-    return jsonify(results)
-    
 @app.route("/api/v1.0/<start>/<end>")
-def search_2(start=None, end = None):
-    # Create our session (link) from Python to the DB
+def search(start, end=None):
     session = Session(engine)
     # Query all variables
     sel = [func.min(Measurement.tobs),
            func.avg(Measurement.tobs),
            func.max(Measurement.tobs)]
-
-    results_2 = session.query(*sel).filter(Measurement.date >= start, Measurement.date <= end).all()
+    # if user does NOT provide end:
+    if end is None:
+        results = session.query(*sel).filter(Measurement.date >= start).all()
+    else:
+        results = session.query(*sel).filter(Measurement.date >= start,Measurement.date <= end).all()
     
     session.close()
-    
-    return jsonify(results_2)
+
+    return(jsonify(results))
 
 if __name__ == "__main__":
     app.run(debug=True)
