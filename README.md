@@ -1,6 +1,6 @@
 ## sqlalchemy-challenge
 ### Purpose
-The purpose of this project was to explore and analyze the weather data in Hawaii to determine when is the best time to visit.
+The purposesof this project were to explore and analyze the weather data in Hawaii to determine when the best time to visit is.
 ### Step 1 - Climate Analysis and Exploration
 All of the following analysis was completed using SQLAlchemy ORM queries, Pandas, and Matplotlib. [(Jupyter notebook link)](https://github.com/changrita1114/sqlalchemy-challenge/blob/main/climate_fyc.ipynb)
 * The provided starter notebook and hawaii.sqlite files were used to complete the climate analysis and data exploration.
@@ -12,7 +12,7 @@ All of the following analysis was completed using SQLAlchemy ORM queries, Pandas
 * The date and prcp values were selected.
 * The query results were loaded into a Pandas DataFrame and set the index to the date column.
 * The DataFrame values were sorted by date.
-* The results were ploted using the DataFrame plot method.
+* The results were plotted using the DataFrame plot method.
 * Pandas was used to print the summary statistics for the precipitation data.
 #### Station Analysis
 * A query was design to calculate the total number of stations.
@@ -21,7 +21,7 @@ All of the following analysis was completed using SQLAlchemy ORM queries, Pandas
     * The TOBS was filtered by the station with the highest number of observations.
     * The results as a histogram was plotted with bins=12.
 ### Step 2 - Climate App
-A Flask API was designed based on the queries which havd developed above. [(Flask APP link)](https://github.com/changrita1114/sqlalchemy-challenge/blob/main/app.py)
+A Flask API was designed based on the queries which had been developed above. [(Flask APP link)](https://github.com/changrita1114/sqlalchemy-challenge/blob/main/app.py)
 * Flask was used to create the routes.
 #### Routes
 * `/`
@@ -43,10 +43,10 @@ A Flask API was designed based on the queries which havd developed above. [(Flas
 #### Temperature Analysis I
 * Hawaii is reputed to enjoy mild weather all year. Is there a meaningful difference between the temperature in, for example, June and December?
 * The average temperature in June and December were identified at all stations across all available years in the dataset. Do the same for December temperature.
-* A t-test to determine whether the difference in the means.
+* A t-test was used to determine whether there was a difference in the means.
 #### Temperature Analysis II
 * The calc_temps function was used to calculate the min, avg, and max temperatures for your trip using the matching dates from the previous year (i.e., use "2017-01-01" if your trip start date was "2018-01-01").
-* The min, avg, and max temperature were ploted from the previous query as a bar chart.
+* The min, avg, and max temperature were plotted from the previous query as a bar chart.
     * The average temperature was set as the bar height.
     * The peak-to-peak (TMAX-TMIN) value was set as the y error bar (YERR).
 #### Daily Rainfall Average
