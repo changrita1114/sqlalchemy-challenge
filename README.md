@@ -31,18 +31,30 @@ A Flask API was designed based on the queries which havd developed above. [(Flas
 * `/`
   * Home page.
   * List all routes that are available.
+  
+![05](img/05.png)
 * `/api/v1.0/precipitation`
   * Convert the query results to a dictionary using `date` as the key and `prcp` as the value.
   * Return the JSON representation of your dictionary.
+  
+![06](img/06.png)
 * `/api/v1.0/stations`
   * Return a JSON list of stations from the dataset.
+
+![07](img/07.png)
 * `/api/v1.0/tobs`
   * Query the dates and temperature observations of the most active station for the last year of data.
   * Return a JSON list of temperature observations (TOBS) for the previous year.
+
+![08](img/08.png)
 * `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
   * Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
   * When given the start only, calculate `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
+  
+  ![09](img/09.png)
   * When given the start and the end date, calculate the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
+  
+  ![10](img/10.png)
 ### Further Analyses
 #### Temperature Analysis I
 * Hawaii is reputed to enjoy mild weather all year. Is there a meaningful difference between the temperature in, for example, June and December?
