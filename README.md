@@ -14,12 +14,16 @@ All of the following analysis was completed using SQLAlchemy ORM queries, Pandas
 * The DataFrame values were sorted by date.
 * The results were ploted using the DataFrame plot method.
 * Pandas was used to print the summary statistics for the precipitation data.
+
+![01](img/01.png)
 #### Station Analysis
 * A query was design to calculate the total number of stations.
 * A query was designed to find the most active stations.
 * A query was designed to retrieve the last 12 months of temperature observation data (TOBS).
     * The TOBS was filtered by the station with the highest number of observations.
     * The results as a histogram was plotted with bins=12.
+    
+![02](img/02.png)
 ### Step 2 - Climate App
 A Flask API was designed based on the queries which havd developed above. [(Flask APP link)](https://github.com/changrita1114/sqlalchemy-challenge/blob/main/app.py)
 * Flask was used to create the routes.
@@ -49,8 +53,12 @@ A Flask API was designed based on the queries which havd developed above. [(Flas
 * The min, avg, and max temperature were ploted from the previous query as a bar chart.
     * The average temperature was set as the bar height.
     * The peak-to-peak (TMAX-TMIN) value was set as the y error bar (YERR).
+    
+![03](img/03.png)
 #### Daily Rainfall Average
 * The rainfall per weather station was calculated using the previous year's matching dates.
 * The daily normals, the averages for the min, avg, and max temperatures, were calculated.
+
+![04](img/04.png)
 ### Disclaimer
 The resources of this master branch are only for educational purposes. All reserved rights belong to UCSD Data Science and Visualization Boot Camp.
